@@ -1,7 +1,138 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "pwa": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/pwa",
+      "sourceRoot": "apps/pwa/src",
+      "prefix": "pwa",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/pwa",
+            "index": "apps/pwa/src/index.html",
+            "main": "apps/pwa/src/main.ts",
+            "polyfills": "apps/pwa/src/polyfills.ts",
+            "tsConfig": "apps/pwa/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/pwa/src/favicon.ico", "apps/pwa/src/assets"],
+            "styles": ["apps/pwa/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "pwa:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pwa:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pwa:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pwa/tsconfig.app.json",
+              "apps/pwa/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pwa/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pwa/jest.config.js",
+            "tsConfig": "apps/pwa/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/pwa/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "pwa-e2e": {
+      "root": "apps/pwa-e2e",
+      "sourceRoot": "apps/pwa-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pwa-e2e/cypress.json",
+            "tsConfig": "apps/pwa-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pwa:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pwa:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/pwa-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/pwa-e2e/**"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "pwa"
 }
