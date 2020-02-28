@@ -17,6 +17,9 @@
     "pwa-e2e": {
       "tags": [],
       "implicitDependencies": ["pwa"]
+    },
+    "api": {
+      "tags": []
     }
   }
 }

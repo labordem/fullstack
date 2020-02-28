@@ -39,7 +39,11 @@
     "@angular/router": "9.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.0",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.10.2",
+    "@nestjs/common": "^6.8.3",
+    "@nestjs/core": "^6.8.3",
+    "@nestjs/platform-express": "^6.8.3",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.900.1",
@@ -63,6 +67,9 @@
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.7.4"
+    "typescript": "~3.7.4",
+    "@nrwl/node": "9.0.4",
+    "@nestjs/schematics": "^6.7.0",
+    "@nestjs/testing": "^6.8.3"
   }
 }
