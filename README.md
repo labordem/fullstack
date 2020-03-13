@@ -2,83 +2,64 @@
 
 This project was generated using [Nx](https://nx.dev).
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
+<p><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="200"></p>
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-## Quick Start & Documentation
+## Monorepo objectives
 
-[Nx Documentation](https://nx.dev/angular)
+### Base functionalities
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+- [x] Angular PWA + Nestjs API, in one repository
+- [x] code formatting & linting pre-commit hook with husky & lint-staged
+- [ ] PWA & API share some environment variables with one .env file
+- [ ] run all the stack in containers with docker-compose
+- [ ] code documentation for PWA & API with compodoc
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+### Pwa functionalities
 
-## Adding capabilities to your workspace
+- [ ] is a Progressive Web Application (Lighthouse checked)
+- [ ] follow Material design guidelines, responsive...
+- [ ] Dynamic color themes (Dark/light)
+- [ ] User authentication system :
+  - [ ] sign up, sign in, jwt authentication (is user signed ?)
+  - [ ] email confirmation (is user email confirmed ?)
+  - [ ] user can update his informations
+  - [ ] user can upload his profile avatar (image resized, progressive encoding)
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+### Api functionalities
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- [ ] switch from Express to Fastify for better performances
+- [ ] Postgres DB connected to Nestjs API, with TypeORM
+- [ ] Graphql implementation, auto-schemas based on Typescript classes with Type-Graphql
+- [ ] User authentication system :
+  - [ ] sign up, sign in, jwt authentication (is user signed ?)
+  - [ ] email confirmation (is user email confirmed ?)
+  - [ ] user can update his informations
+  - [ ] user can upload his profile avatar (image resized, progressive encoding)
 
-Below are some plugins which you can add to your workspace:
+## How to use this monorepo
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+### Run it in your local dev environment + container for database
 
-## Generate an application
+```bash
+# install dependencies
+npm i
+# run Postgres Database
+docker-compose db -d
+# run Nest Application Programming Interface
+npm start api
+# run Angular Progressive Web App
+npm start pwa
+```
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+### Run apps in containers only
 
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are sharable across libraries and applications. They can be imported from `@fullstack/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+```bash
+# install dependencies
+npm i
+# build all apps in production mode
+npm run build --project api && npm run build --project pwa
+# run all apps in containers
+docker-compose up
+```
