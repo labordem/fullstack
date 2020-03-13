@@ -27,6 +27,20 @@
     "help": "nx help",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "tslint --fix",
+      "prettier --write"
+    ],
+    "*.js, *.scss, *.json, *.md": [
+      "prettier --write"
+    ]
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "9.0.0",
@@ -50,10 +64,13 @@
     "@angular/cli": "9.0.1",
     "@angular/compiler-cli": "9.0.0",
     "@angular/language-service": "9.0.0",
+    "@nestjs/schematics": "^6.7.0",
+    "@nestjs/testing": "^6.8.3",
     "@nrwl/angular": "^9.0.4",
     "@nrwl/cypress": "9.0.4",
     "@nrwl/jest": "9.0.4",
     "@nrwl/nest": "^9.0.4",
+    "@nrwl/node": "9.0.4",
     "@nrwl/workspace": "9.0.4",
     "@types/jest": "24.9.1",
     "@types/node": "~8.9.4",
@@ -61,15 +78,14 @@
     "cypress": "^3.8.2",
     "dotenv": "6.2.0",
     "eslint": "6.1.0",
+    "husky": "^4.2.3",
     "jest": "24.9.0",
     "jest-preset-angular": "8.0.0",
+    "lint-staged": "^10.0.8",
     "prettier": "1.18.2",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.7.4",
-    "@nrwl/node": "9.0.4",
-    "@nestjs/schematics": "^6.7.0",
-    "@nestjs/testing": "^6.8.3"
+    "typescript": "~3.7.4"
   }
 }
