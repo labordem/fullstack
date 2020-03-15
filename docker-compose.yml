@@ -1,0 +1,30 @@
+version: '3.7'
+
+networks:
+  network:
+    name: ${PUBLIC_ALL_APP_NAME}
+
+services:
+  api:
+    container_name: ${PUBLIC_ALL_APP_NAME}_api
+    image: node:lts-alpine
+    volumes:
+      - ./package.json:/app/api/package.json
+      - ./package-lock.json:/app/api/package-lock.json
+      - ./dist/apps/api:/app/api
+    env_file: .env
+    command: sh -c
+      "cd /app/api && npm i --only=prod && node main.js"
+    restart: always
+    networks:
+      - network
+
+  pwa:
+    container_name: ${PUBLIC_ALL_APP_NAME}_pwa
+    image: nginx:alpine
+    volumes:
+      - ./docker/pwa/nginx.conf:/etc/nginx/nginx.conf
+      - ./dist/apps/pwa:/var/www/html
+    restart: always
+    networks:
+      - network

@@ -13,7 +13,7 @@ This project was generated using [Nx](https://nx.dev).
 - [x] Angular PWA + Nestjs API, in one repository
 - [x] code formatting & linting pre-commit hook with husky & lint-staged
 - [x] one .env file for Pwa & Api, run `npm run set-env` to update prduction & development environment.ts files
-- [ ] run all the stack in containers with docker-compose
+- [x] run all the stack in containers with docker-compose
 - [ ] code documentation for PWA & API with compodoc
 
 ### Pwa functionalities
@@ -40,26 +40,24 @@ This project was generated using [Nx](https://nx.dev).
 
 ## How to use this monorepo
 
-### Run it in your local dev environment + container for database
+### Dev environment, with node.js
 
 ```bash
 # install dependencies
 npm i
-# run Postgres Database
-docker-compose db -d
 # run Nest Application Programming Interface
 npm start api
 # run Angular Progressive Web App
 npm start pwa
 ```
 
-### Run apps in containers only
+### Prod environment, with docker-compose
 
 ```bash
 # install dependencies
 npm i
-# build all apps in production mode
-npm run build --project api && npm run build --project pwa
+# build all apps in prod mode
+npm run release
 # run all apps in containers
-docker-compose up
+npm run containers
 ```

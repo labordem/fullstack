@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  api:
+    ports:
+      - ${PUBLIC_DEV_API_PORT}:${PUBLIC_DEV_API_PORT}
+
+  pwa:
+    ports:
+      - ${PUBLIC_DEV_PWA_PORT}:80

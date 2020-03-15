@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(environment.APP_NAME);
-    this.apiResponse$ = this.http.get<Object>('http://localhost:3001/api');
+    this.apiResponse$ = this.http.get<Object>(
+      `//${environment.API_DOMAIN}:${environment.API_PORT}/${environment.API_PREFIX}`
+    );
   }
 }
