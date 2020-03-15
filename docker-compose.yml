@@ -28,3 +28,12 @@ services:
     restart: always
     networks:
       - network
+
+  db:
+    container_name: ${PUBLIC_ALL_APP_NAME}_db
+    image: postgres:alpine
+    environment:
+      PGDATA: /var/lib/postgresql/data
+    restart: always
+    networks:
+      - network

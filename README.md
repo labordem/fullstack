@@ -29,8 +29,8 @@ This project was generated using [Nx](https://nx.dev).
 
 ### Api functionalities
 
+- [x] Postgres DB connected to Nestjs API, with TypeORM
 - [ ] switch from Express to Fastify for better performances
-- [ ] Postgres DB connected to Nestjs API, with TypeORM
 - [ ] Graphql implementation, auto-schemas based on Typescript classes with Type-Graphql
 - [ ] User authentication system :
   - [ ] sign up, sign in, jwt authentication (is user signed ?)

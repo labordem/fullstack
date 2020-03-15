@@ -5,7 +5,6 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
-    "start": "ng serve",
     "build": "npm run set-env && ng build",
     "test": "npm run set-env && ng test",
     "lint": "nx workspace-lint && ng lint",
@@ -28,7 +27,10 @@
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "set-env": "ts-node tools/set-env.ts && prettier --write **/**/**/environments/**.ts ",
     "release": "npm run set-env && ng build --prod && ng build api --prod",
-    "containers": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+    "containers": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+    "pwa": "ng serve pwa",
+    "api": "ng serve api",
+    "db": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d db"
   },
   "husky": {
     "hooks": {
@@ -54,13 +56,16 @@
     "@angular/platform-browser": "9.0.0",
     "@angular/platform-browser-dynamic": "9.0.0",
     "@angular/router": "9.0.0",
-    "core-js": "^2.5.4",
-    "rxjs": "~6.5.0",
-    "zone.js": "^0.10.2",
     "@nestjs/common": "^6.8.3",
     "@nestjs/core": "^6.8.3",
     "@nestjs/platform-express": "^6.8.3",
-    "reflect-metadata": "^0.1.13"
+    "@nestjs/typeorm": "^7.0.0",
+    "core-js": "^2.5.4",
+    "pg": "^7.18.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~6.5.0",
+    "typeorm": "^0.2.24",
+    "zone.js": "^0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.900.1",

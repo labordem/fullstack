@@ -8,3 +8,14 @@ services:
   pwa:
     ports:
       - ${PUBLIC_DEV_PWA_PORT}:80
+
+  db:
+    ports:
+      - ${PRIVATE_DEV_DB_PORT}:${PRIVATE_DEV_DB_PORT}
+    # volumes:
+    #   - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: '${PRIVATE_DEV_DB_PASSWORD}'
+      POSTGRES_USER: ${PRIVATE_DEV_DB_USER}
+      POSTGRES_DB: ${PRIVATE_DEV_DB_NAME}
+    command: -p ${PRIVATE_DEV_DB_PORT}
