@@ -12,7 +12,7 @@ This project was generated using [Nx](https://nx.dev).
 
 - [x] Angular PWA + Nestjs API, in one repository
 - [x] code formatting & linting pre-commit hook with husky & lint-staged
-- [ ] PWA & API share some environment variables with one .env file
+- [x] one .env file for Pwa & Api, run `npm run set-env` to update prduction & development environment.ts files
 - [ ] run all the stack in containers with docker-compose
 - [ ] code documentation for PWA & API with compodoc
 

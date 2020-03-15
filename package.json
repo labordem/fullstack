@@ -6,8 +6,8 @@
     "ng": "ng",
     "nx": "nx",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "npm run set-env && ng build",
+    "test": "npm run set-env && ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
@@ -25,7 +25,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "set-env": "ts-node tools/set-env.ts && prettier --write **/**/**/environments/**.ts "
   },
   "husky": {
     "hooks": {
