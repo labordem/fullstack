@@ -53,9 +53,9 @@ dotenvDestinations.forEach(destination => {
     null,
     '  '
   )}`;
-  console.log('Writing variables from process.env: ' + destination.path);
   fs.writeFileSync(destination.path, tsString);
 });
+console.log('⛰ Environment files updated :');
 
 function setKeyValue(
   key: string,
@@ -73,5 +73,3 @@ function setKeyValue(
     dotenvDestination.json[environmentProperty] = +currentValue;
   }
 }
-
-console.log('Finished');

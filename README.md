@@ -4,9 +4,11 @@ This project was generated using [Nx](https://nx.dev).
 
 <p><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="200"></p>
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+| **DB** (Postgres)                                         | **API** (Nestjs)                                        | **PWA** (angular)                                        |
+| --------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------- |
+| <img src="documentation/images/postgres.png" width="150"> | <img src="documentation/images/nestjs.png" width="150"> | <img src="documentation/images/angular.png" width="150"> |
 
-## Monorepo objectives
+## Objectives
 
 ### Base functionalities
 
@@ -38,20 +40,22 @@ This project was generated using [Nx](https://nx.dev).
   - [ ] user can update his informations
   - [ ] user can upload his profile avatar (image resized, progressive encoding)
 
-## How to use this monorepo
+## How to test the stack
 
-### Dev environment, with node.js
+### Dev environment
 
 ```bash
 # install dependencies
 npm i
+# run Postgres Database in container
+npm run db
 # run Nest Application Programming Interface
-npm start api
+npm run api
 # run Angular Progressive Web App
-npm start pwa
+npm run pwa
 ```
 
-### Prod environment, with docker-compose
+### Prod environment
 
 ```bash
 # install dependencies
@@ -61,3 +65,15 @@ npm run release
 # run all apps in containers
 npm run containers
 ```
+
+## How to make this monorepo yours
+
+```bash
+# clone this project and rename it
+git clone https://github.com/mIaborde/fullstack your-project-name
+# reset git history
+rm -rf .git && git init
+```
+
+- Change `PUBLIC_ALL_APP_NAME` variable in **.env** file, `"name"` in **package.json**, and `npmScope` **nx.json**
+- adapt **.env** to your needs and you are good to go

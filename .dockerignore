@@ -1,0 +1,8 @@
+# ignore everything
+*
+
+# except this files
+!/dist
+!/package.json
+!/package-lock.json
+!/nginx.conf
