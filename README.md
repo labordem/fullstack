@@ -20,7 +20,7 @@ This project was generated using [Nx](https://nx.dev).
 
 ### Pwa functionalities
 
-- [ ] is a Progressive Web Application (Lighthouse checked)
+- [x] is a Progressive Web Application (Lighthouse checked)
 - [ ] follow Material design guidelines, responsive...
 - [ ] Dynamic color themes (Dark/light)
 - [ ] User authentication system :
