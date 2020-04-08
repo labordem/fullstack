@@ -1,0 +1,181 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$palette-primary: (
+  50: var(--palette-primary-50),
+  100: var(--palette-primary-100),
+  200: var(--palette-primary-200),
+  300: var(--palette-primary-300),
+  400: var(--palette-primary-400),
+  500: var(--palette-primary-500),
+  600: var(--palette-primary-600),
+  700: var(--palette-primary-700),
+  800: var(--palette-primary-800),
+  900: var(--palette-primary-900),
+  A100: var(--palette-primary-A100),
+  A200: var(--palette-primary-A200),
+  A400: var(--palette-primary-A400),
+  A700: var(--palette-primary-A700),
+  contrast: (
+    50: var(--palette-primary-contrast-50),
+    100: var(--palette-primary-contrast-100),
+    200: var(--palette-primary-contrast-200),
+    300: var(--palette-primary-contrast-300),
+    400: var(--palette-primary-contrast-400),
+    500: var(--palette-primary-contrast-500),
+    600: var(--palette-primary-contrast-600),
+    700: var(--palette-primary-contrast-700),
+    800: var(--palette-primary-contrast-800),
+    900: var(--palette-primary-contrast-900),
+    A100: var(--palette-primary-contrast-A100),
+    A200: var(--palette-primary-contrast-A200),
+    A400: var(--palette-primary-contrast-A400),
+    A700: var(--palette-primary-contrast-A700)
+  )
+);
+
+$palette-accent: (
+  50: var(--palette-accent-50),
+  100: var(--palette-accent-100),
+  200: var(--palette-accent-200),
+  300: var(--palette-accent-300),
+  400: var(--palette-accent-400),
+  500: var(--palette-accent-500),
+  600: var(--palette-accent-600),
+  700: var(--palette-accent-700),
+  800: var(--palette-accent-800),
+  900: var(--palette-accent-900),
+  A100: var(--palette-accent-A100),
+  A200: var(--palette-accent-A200),
+  A400: var(--palette-accent-A400),
+  A700: var(--palette-accent-A700),
+  contrast: (
+    50: var(--palette-accent-contrast-50),
+    100: var(--palette-accent-contrast-100),
+    200: var(--palette-accent-contrast-200),
+    300: var(--palette-accent-contrast-300),
+    400: var(--palette-accent-contrast-400),
+    500: var(--palette-accent-contrast-500),
+    600: var(--palette-accent-contrast-600),
+    700: var(--palette-accent-contrast-700),
+    800: var(--palette-accent-contrast-800),
+    900: var(--palette-accent-contrast-900),
+    A100: var(--palette-accent-contrast-A100),
+    A200: var(--palette-accent-contrast-A200),
+    A400: var(--palette-accent-contrast-A400),
+    A700: var(--palette-accent-contrast-A700)
+  )
+);
+
+$palette-warn: (
+  50: var(--palette-warn-50),
+  100: var(--palette-warn-100),
+  200: var(--palette-warn-200),
+  300: var(--palette-warn-300),
+  400: var(--palette-warn-400),
+  500: var(--palette-warn-500),
+  600: var(--palette-warn-600),
+  700: var(--palette-warn-700),
+  800: var(--palette-warn-800),
+  900: var(--palette-warn-900),
+  A100: var(--palette-warn-A100),
+  A200: var(--palette-warn-A200),
+  A400: var(--palette-warn-A400),
+  A700: var(--palette-warn-A700),
+  contrast: (
+    50: var(--palette-warn-contrast-50),
+    100: var(--palette-warn-contrast-100),
+    200: var(--palette-warn-contrast-200),
+    300: var(--palette-warn-contrast-300),
+    400: var(--palette-warn-contrast-400),
+    500: var(--palette-warn-contrast-500),
+    600: var(--palette-warn-contrast-600),
+    700: var(--palette-warn-contrast-700),
+    800: var(--palette-warn-contrast-800),
+    900: var(--palette-warn-contrast-900),
+    A100: var(--palette-warn-contrast-A100),
+    A200: var(--palette-warn-contrast-A200),
+    A400: var(--palette-warn-contrast-A400),
+    A700: var(--palette-warn-contrast-A700)
+  )
+);
+
+// $palette-background: (
+//   status-bar: var(--palette-background-status-bar),
+//   app-bar: var(--palette-background-app-bar),
+//   background: var(--palette-background-background),
+//   hover: var(--palette-background-hover),
+//   card: var(--palette-background-card),
+//   dialog: var(--palette-background-dialog),
+//   disabled-button: var(--palette-background-disabled-button),
+//   raised-button: var(--palette-background-raised-button),
+//   focused-button: var(--palette-background-focused-button),
+//   selected-button: var(--palette-background-selected-button),
+//   selected-disabled-button: var(--palette-background-selected-disabled-button),
+//   disabled-button-toggle: var(--palette-background-disabled-button-toggle),
+//   unselected-chip: var(--palette-background-unselected-chip),
+//   disabled-list-option: var(--palette-background-disabled-list-option)
+// );
+
+// $palette-foreground: (
+//   base: var(--palette-foreground-base),
+//   divider: var(--palette-foreground-divider),
+//   dividers: var(--palette-foreground-dividers),
+//   disabled: var(--palette-foreground-disabled),
+//   disabled-button: var(--palette-foreground-disabled-button),
+//   disabled-text: var(--palette-foreground-disabled-text),
+//   elevation: var(--palette-foreground-elevation),
+//   hint-text: var(--palette-foreground-hint-text),
+//   secondary-text: var(--palette-foreground-secondary-text),
+//   icon: var(--palette-foreground-icon),
+//   icons: var(--palette-foreground-icons),
+//   text: var(--palette-foreground-text),
+//   slider-min: var(--palette-foreground-slider-min),
+//   slider-off: var(--palette-foreground-slider-off),
+//   slider-off-active: var(--palette-foreground-slider-off-active)
+// );
+
+$mat-light-theme: mat-light-theme(
+  mat-palette($palette-primary),
+  mat-palette($palette-accent),
+  mat-palette($palette-warn)
+);
+$mat-dark-theme: mat-dark-theme(
+  mat-palette($palette-primary),
+  mat-palette($palette-accent),
+  mat-palette($palette-warn)
+);
+
+.theme-primary {
+  background: var(--palette-primary-500);
+  color: var(--palette-primary-contrast-500);
+}
+
+.theme-primary-txt {
+  color: var(--palette-primary-500);
+}
+
+.theme-accent {
+  background: var(--palette-accent-500);
+  color: var(--palette-accent-contrast-500);
+}
+
+.theme-accent-txt {
+  color: var(--palette-accent-500);
+}
+
+.theme-warn {
+  background: var(--palette-warn-500);
+  color: var(--palette-warn-contrast-500);
+}
+
+.theme-warn-txt {
+  color: var(--palette-warn-500);
+}
+
+// no class because is default theme
+@include angular-material-theme($mat-light-theme);
+
+.mat-dark-theme {
+  @include angular-material-theme($mat-dark-theme);
+}

@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'pwa-root',
   template: `
-    <div>Api status: {{ apiResponse$ | async | json }}</div>
+    <pwa-layout></pwa-layout>
   `
 })
 export class AppComponent implements OnInit {

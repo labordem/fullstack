@@ -1,0 +1,72 @@
+mat-sidenav-container {
+  min-height: 100%; // same height as browser window height
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; // same height as browser window height
+}
+
+main {
+  flex: 1; // child will set to an equal size inside the container
+}
+
+mat-sidenav {
+  max-width: 90%;
+  width: 250px;
+
+  .list-item-active {
+    background: #0000000e;
+  }
+
+  .mat-nav-list {
+    padding-top: 0;
+  }
+
+  .sidenav-header {
+    padding: 16px;
+  }
+
+  .img-user {
+    border-radius: 50%;
+    height: 70px;
+    object-fit: cover;
+    width: 70px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: normal;
+    margin: -5px 0;
+  }
+}
+
+mat-toolbar {
+  justify-content: space-between;
+  max-height: 50px;
+  min-height: 50px;
+
+  .app-name {
+    font-size: 1.2em;
+    padding: 0 15px 0 10px;
+  }
+
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+  .mat-icon-button {
+    text-align: center;
+  }
+
+  .mat-list-icon {
+    margin-right: 10px;
+  }
+}

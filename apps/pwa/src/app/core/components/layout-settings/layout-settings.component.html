@@ -1,0 +1,30 @@
+<button
+  mat-icon-button
+  mat-suffix
+  [matMenuTriggerFor]="menu"
+  aria-label="Settings button"
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="onToggleDarkTheme()">
+      <mat-icon>{{ isDarkThemeToggled ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+      <span>{{ isDarkThemeToggled ? 'Light theme' : 'Dark theme' }}</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="themeList">
+      <mat-icon>style</mat-icon>
+      <span>Colors</span>
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #themeList="matMenu">
+  <ng-container *ngFor="let theme of themes">
+    <button mat-menu-item (click)="onChooseTheme(theme)">
+      {{ theme.name }}
+    </button>
+  </ng-container>
+</mat-menu>

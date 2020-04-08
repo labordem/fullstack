@@ -1,0 +1,138 @@
+<section class="auth-page anime-zoom-in">
+  <mat-card class="auth-card" [ngClass]="{ 'anime-wobble': errorMessage }">
+    <mat-card-header color="accent">
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="submit(formGroup.value)"
+        novalidate
+      >
+        <mat-divider></mat-divider>
+        <!-- Username input -->
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your username</mat-label>
+          <input matInput formControlName="username" color="primary" required />
+          <mat-error *ngIf="formGroup.get('username').hasError('required')">
+            You must enter a value
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('username').hasError('pattern')">
+            Must contain 4-20 alphanumeric characters
+          </mat-error>
+          <mat-error
+            *ngIf="formGroup.get('username').hasError('mustNotBeRejected')"
+          >
+            Username already exists
+          </mat-error>
+        </mat-form-field>
+        <!-- Email input -->
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input matInput formControlName="email" color="primary" required />
+          <mat-error *ngIf="formGroup.get('email').hasError('required')">
+            You must enter a value
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('email').hasError('pattern')">
+            Not a valid email
+          </mat-error>
+          <mat-error
+            *ngIf="formGroup.get('email').hasError('mustNotBeRejected')"
+          >
+            Email already exists
+          </mat-error>
+        </mat-form-field>
+        <!-- Password input -->
+        <mat-form-field appearance="outline" color="primary">
+          <input
+            matInput
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            required
+          />
+          <mat-label>Enter your password</mat-label>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'hidePassword password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="formGroup.get('password').hasError('required')"
+            >You must enter a value</mat-error
+          >
+          <mat-error *ngIf="formGroup.get('password').hasError('pattern')">
+            Must contain 8+ characters, one uppercase letter or/and one number
+            or/and one special character
+          </mat-error>
+        </mat-form-field>
+        <!-- Confirm password input -->
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            formControlName="confirmPassword"
+            [type]="hidePassword ? 'password' : 'text'"
+            required
+          />
+          <mat-label>Confirm your password</mat-label>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'hidePassword password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>
+              {{ hidePassword ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+          </button>
+          <mat-error
+            *ngIf="formGroup.get('confirmPassword').hasError('mustMatch')"
+            >Passwords doesn't match</mat-error
+          >
+          <mat-error
+            *ngIf="formGroup.get('confirmPassword').hasError('required')"
+            >You must confirm the password
+          </mat-error>
+        </mat-form-field>
+        <!-- Form validation -->
+        <mat-divider></mat-divider>
+        <div class="button-group">
+          <mat-progress-bar
+            *ngIf="isLoading"
+            mode="indeterminate"
+          ></mat-progress-bar>
+          <button
+            *ngIf="!isLoading"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!formGroup.valid"
+          >
+            Submit
+          </button>
+          <button
+            *ngIf="!isLoading"
+            mat-raised-button
+            color="accent"
+            routerLink="/auth/signin"
+            type="button"
+          >
+            Sign In
+          </button>
+        </div>
+
+        <!-- Error -->
+        <mat-error *ngIf="errorMessage" class="submit-error">
+          {{ errorMessage }}
+        </mat-error>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

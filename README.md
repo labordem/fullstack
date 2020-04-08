@@ -24,11 +24,13 @@ This project was generated using [Nx](https://nx.dev).
 ### Pwa functionalities
 
 - [x] is a Progressive Web Application (Lighthouse checked)
-- [ ] follow Material design guidelines, responsive...
-- [ ] Dynamic color themes (Dark/light)
+- [x] follow Material design guidelines, responsive...
+- [x] Dynamic color themes :
+  - [x] Without DOM usage : Dark/light mode
+  - [x] With DOM usage : Many color themes, can be defined on runtime (color picker, api response...)
 - [ ] User authentication system :
-  - [ ] sign up, sign in, jwt authentication (is user signed ?)
-  - [ ] email confirmation (is user email confirmed ?)
+  - [ ] sign up, sign in, jwt authentication
+  - [ ] email confirmation
   - [ ] user can update his informations
   - [ ] user can upload his profile avatar (image resized, progressive encoding)
 
@@ -38,8 +40,8 @@ This project was generated using [Nx](https://nx.dev).
 - [ ] switch from Express to Fastify for better performances
 - [ ] Graphql implementation, auto-schemas based on Typescript classes with Type-Graphql
 - [ ] User authentication system :
-  - [ ] sign up, sign in, jwt authentication (is user signed ?)
-  - [ ] email confirmation (is user email confirmed ?)
+  - [ ] sign up, sign in, jwt authentication
+  - [ ] email confirmation
   - [ ] user can update his informations
   - [ ] user can upload his profile avatar (image resized, progressive encoding)
 

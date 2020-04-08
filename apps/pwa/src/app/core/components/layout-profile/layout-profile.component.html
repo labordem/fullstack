@@ -1,0 +1,48 @@
+<ng-container *ngIf="currentUser; else notAuth">
+  <button
+    mat-raised-button
+    [matMenuTriggerFor]="authMenu"
+    class="profile-button"
+  >
+    <span>{{ currentUser?.username }}</span>
+    <img
+      class="img-user-button"
+      src="{{ currentUser?.avatar | imageApi }}"
+      default="profile"
+    />
+  </button>
+  <mat-menu #authMenu="matMenu">
+    <button mat-menu-item routerLink="profile/me">
+      <mat-icon>edit</mat-icon>
+      <span>Edit your profile</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="onOpenDialog(dialogTemplate)">
+      <mat-icon>exit_to_app</mat-icon>
+      <span routerLink="/">Sign out</span>
+    </button>
+  </mat-menu>
+</ng-container>
+
+<ng-template #notAuth>
+  <button mat-raised-button color="accent" routerLink="auth/signin">
+    <mat-icon mat-list-icon>person</mat-icon>
+    <span>Sign In</span>
+  </button>
+</ng-template>
+
+<ng-template #dialogTemplate>
+  <h2 matDialogTitle>Are you sure ?</h2>
+  <mat-dialog-content>
+    <p>
+      If you sign out you will have to enter your credentials again to use
+      application !
+    </p>
+  </mat-dialog-content>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCloseDialog()">Cancel</button>
+    <button mat-button (click)="onSignout(); onCloseDialog()">
+      Sign out
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,10 @@
+@media screen and (min-width: 960px) {
+  .hide-gt-sm {
+    display: none;
+  }
+}
+@media screen and (max-width: 959px) {
+  .hide-lt-md {
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+.mat-list-icon,
+.mat-icon-button {
+  margin-right: 10px;
+}
+
+.mat-raised-button {
+  border-radius: 20px;
+  margin-right: 5px;
+
+  .img-user-button {
+    border-radius: 50%;
+    height: 30px;
+    margin-left: 10px;
+    object-fit: cover;
+    width: 30px;
+  }
+}
+
+.profile-button {
+  padding-right: 5px;
+}

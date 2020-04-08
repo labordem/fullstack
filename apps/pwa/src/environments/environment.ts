@@ -4,6 +4,6 @@ export const environment = {
   API_PREFIX: 'api',
   API_PORT: 3001,
   API_DOMAIN: 'localhost',
-  PWA_DOMAIN: 'localhost',
-  PWA_PORT: 3000
+  PWA_PORT: 3000,
+  PWA_DOMAIN: 'localhost'
 };
