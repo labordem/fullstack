@@ -10,10 +10,13 @@ This project was generated using [Nx](https://nx.dev).
 
 ## Objectives
 
-### Base functionalities
+### Monorepo functionalities
 
 - [x] Angular PWA + Nestjs API, in one repository
-- [x] code formatting & linting pre-commit hook with husky & lint-staged
+- [x] Pre-commit hooks with Husky & Lint-Staged :
+  - [x] TSlint Typescript linting
+  - [x] Prettier code formatting
+  - [x] StyleLint Scss linting (stylelint-config-sass-guidelines)
 - [x] one .env file for Pwa & Api, run `npm run set-env` to update prduction & development environment.ts files
 - [x] run all the stack in containers with docker-compose
 - [ ] code documentation for PWA & API with compodoc

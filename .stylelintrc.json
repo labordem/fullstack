@@ -1,0 +1,7 @@
+{
+  "extends": ["stylelint-config-sass-guidelines"],
+  "defaultSeverity": "warning",
+  "rules": {
+    "function-parentheses-space-inside": "never-single-line"
+  }
+}

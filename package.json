@@ -42,7 +42,11 @@
       "tslint --fix",
       "prettier --write"
     ],
-    "*.js, *.scss, *.json, *.md": [
+    "*.js, *.json, *.md, *.yml": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix --max-warnings 0",
       "prettier --write"
     ]
   },
@@ -94,6 +98,8 @@
     "jest-preset-angular": "8.0.0",
     "lint-staged": "^10.0.8",
     "prettier": "1.18.2",
+    "stylelint": "^13.3.0",
+    "stylelint-config-sass-guidelines": "^7.0.0",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
