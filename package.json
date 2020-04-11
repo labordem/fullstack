@@ -27,10 +27,10 @@
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "set-env": "ts-node tools/set-env.ts && prettier --write **/**/**/environments/**.ts ",
     "release": "npm run set-env && ng build --prod && ng build api --prod",
-    "containers": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+    "containers": "docker-compose -f docker-compose.prod.yml up -d",
     "pwa": "ng serve pwa",
     "api": "ng serve api",
-    "db": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d db"
+    "db": "docker-compose -f docker-compose.dev.yml up -d db"
   },
   "husky": {
     "hooks": {
