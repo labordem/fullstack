@@ -1,10 +1,15 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
+import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import 'reflect-metadata'; // https://typegraphql.ml/docs/installation.html
 import { environment } from '../environments/environment';
 import { AppController } from './app.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: environment.DB_DOMAIN,
@@ -14,7 +19,17 @@ import { AppController } from './app.controller';
       password: environment.DB_PASSWORD,
       synchronize: true,
       autoLoadEntities: true
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: 'schema.gql',
+      installSubscriptionHandlers: true
     })
+  ],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe
+    }
   ],
   controllers: [AppController]
 })
