@@ -38,7 +38,10 @@ This project was generated using [Nx](https://nx.dev).
 
 - [x] Postgres DB connected to Nestjs API, with TypeORM
 - [x] switch from Express to Fastify for better performances
-- [ ] Graphql implementation, auto-schemas based on Typescript classes with Type-Graphql
+- [x] Apollo Graphql implementation
+- [x] Graphql <-> Typescript automations :
+  - [x] GraphQL Schema generated from Api TypeORM classes
+  - [x] Typescript interfaces (_generated.ts_ shared with frontend app) generated from GraphQL Schema
 - [ ] User authentication system :
   - [ ] sign up, sign in, jwt authentication
   - [ ] email confirmation
@@ -58,6 +61,15 @@ npm run db
 npm run api
 # run Angular Progressive Web App
 npm run pwa
+```
+
+> run API will automatically update 'schema.gql' according to ORM entities & DTO
+
+```bash
+# update all 'environment.ts' variables according to .env file
+npm run set-env
+# update Typescript shared interfaces according to schema.gql file
+npm run codegen
 ```
 
 ### Prod environment

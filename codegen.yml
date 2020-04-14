@@ -1,0 +1,7 @@
+overwrite: true
+schema: "schema.gql"
+documents: null
+generates:
+  libs/data/src/lib/generated.ts:
+    plugins:
+      - "typescript"
