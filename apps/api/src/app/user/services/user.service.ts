@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { PaginationArgs } from '../../shared/dto/pagination.args';
 import { UserCreateInput } from '../dto/user-create.input';
 import { User } from '../entities/user.entity';
 
@@ -19,8 +20,8 @@ export class UserService {
     return this.userRepository.findOne({ id });
   }
 
-  async readAll(): Promise<User[]> {
-    return this.userRepository.find();
+  async readAll(paginationArgs: PaginationArgs): Promise<User[]> {
+    return this.userRepository.find(paginationArgs);
   }
 
   async update(data: User): Promise<User> {
@@ -30,13 +31,5 @@ export class UserService {
   async delete(id: number): Promise<boolean> {
     await this.userRepository.delete({ id });
     return true;
-  }
-
-  async readByEmail(email: string): Promise<User> {
-    return this.userRepository.findOne({ email });
-  }
-
-  async readByUsername(username: string): Promise<User> {
-    return this.userRepository.findOne({ username });
   }
 }

@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutFooterComponent } from './components/layout-footer/layout-footer.component';
 import { LayoutProfileComponent } from './components/layout-profile/layout-profile.component';
 import { LayoutSettingsComponent } from './components/layout-settings/layout-settings.component';
+import { GraphQLModule } from './graphql.module';
 import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -12,9 +13,9 @@ import { LayoutComponent } from './layout/layout.component';
     LayoutComponent,
     LayoutSettingsComponent,
     LayoutProfileComponent,
-    LayoutFooterComponent
+    LayoutFooterComponent,
   ],
-  imports: [SharedModule, HttpClientModule, RouterModule],
-  exports: [LayoutComponent]
+  imports: [SharedModule, HttpClientModule, RouterModule, GraphQLModule],
+  exports: [LayoutComponent],
 })
 export class CoreModule {}

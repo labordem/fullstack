@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthSigninInput, validEmail, validPassword } from '@fullstack/data';
-import { AuthService } from '../../../core/services/auth.service';
+import { take } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'pwa-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['../../auth.component.scss']
+  styleUrls: ['../../auth.component.scss'],
 })
 export class SigninComponent implements OnInit {
   formGroup: FormGroup;
@@ -28,31 +29,36 @@ export class SigninComponent implements OnInit {
       {
         email: [
           null,
-          [Validators.required, Validators.pattern(validEmail.regexp)]
+          [Validators.required, Validators.pattern(validEmail.regexp)],
         ],
-        password: [null, [Validators.required]]
+        password: [null, [Validators.required]],
       },
       {
-        validators: this.mustNotBeRejectedValidator()
+        validators: this.mustNotBeRejectedValidator(),
       }
     );
   }
 
-  async submit(formValue: AuthSigninInput): Promise<void> {
-    try {
-      this.errorMessage = undefined;
-      this.hidePassword = true;
-      this.isLoading = true;
-      this.formGroup.disable();
-      await this.authService.signin(formValue);
-      this.router.navigate(['home']);
-    } catch (err) {
-      console.log('err: ', err);
-      this.errorMessage = err.error.message || err.message;
-    } finally {
-      this.isLoading = false;
-      this.formGroup.enable();
-    }
+  async submit(formGroup: FormGroup): Promise<void> {
+    const authSigninInput: AuthSigninInput = {
+      email: formGroup.getRawValue().email,
+      password: formGroup.getRawValue().password,
+    };
+    this.errorMessage = undefined;
+    this.hidePassword = true;
+    this.isLoading = true;
+    this.formGroup.disable();
+    this.authService
+      .signin(authSigninInput)
+      .pipe(take(1))
+      .subscribe(
+        (res) => this.router.navigate(['home']),
+        (err) => {
+          this.isLoading = false;
+          this.formGroup.enable();
+          this.errorMessage = err?.error?.message || err?.message || err;
+        }
+      );
   }
 
   private mustNotBeRejectedValidator(): (formGroup: FormGroup) => void {

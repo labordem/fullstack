@@ -39,3 +39,32 @@ mat-form-field {
 .sumbit-error {
   margin: 20px;
 }
+
+.center {
+  text-align: center;
+}
+
+.status {
+  text-align: center;
+  width: 100%;
+
+  .mat-icon {
+    font-size: 100px;
+
+    height: 100;
+    text-align: center;
+    width: 100px;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &.column {
+    flex-direction: column;
+  }
+}
+
+.m-10 {
+  padding: 10px;
+}

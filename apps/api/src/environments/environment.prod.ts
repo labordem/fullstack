@@ -9,6 +9,14 @@ export const environment = {
   DB_PORT: 5432,
   DB_DOMAIN: 'db',
   DB_NAME: 'postgres',
-  DB_USER: 'changeme2',
-  DB_PASSWORD: 'changeme3'
+  DB_USER: 'changeme',
+  DB_PASSWORD: 'changeme',
+  JWT_USER_KEY: 'changeme',
+  JWT_EMAIL_KEY: 'changeme',
+  EMAIL_HOST: 'smtp.ethereal.email',
+  EMAIL_PORT: 587,
+  EMAIL_SECURE: false,
+  EMAIL_USER: 0,
+  EMAIL_PASS: 0,
+  EMAIL_FROM: '${PROJECT_NAME} <foo@example.com>',
 };

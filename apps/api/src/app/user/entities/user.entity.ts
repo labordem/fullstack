@@ -1,26 +1,28 @@
+import { hash } from 'bcryptjs';
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 @ObjectType()
 export class User {
-  @Field(type => ID)
+  @Field((type) => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @CreateDateColumn()
-  created: Date;
+  createdAt: Date;
 
-  @UpdateDateColumn()
   @Field()
-  updated: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Field()
   @Column('varchar', { length: 20, unique: true })
@@ -36,4 +38,9 @@ export class User {
 
   @Column('boolean', { default: false })
   isConfirmed: boolean;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await hash(this.password, 10);
+  }
 }

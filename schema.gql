@@ -3,19 +3,34 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input AuthSigninInput {
+  email: String!
+  password: String!
+}
+
+input AuthSignupInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
 
 type Mutation {
+  signup(authSignupInput: AuthSignupInput!): String!
+  confirmEmail(emailToken: String!): String!
   userCreate(data: UserCreateInput!): User!
   userDelete(id: Float!): Boolean!
 }
 
 type Query {
+  signin(authSigninInput: AuthSigninInput!): String!
+  sendEmailConfirmation(currentUserId: Float!): String!
   user(id: Float!): User!
-  users: [User!]!
+  users(skip: Int!, take: Int!): [User!]!
 }
 
 type Subscription {
@@ -24,8 +39,8 @@ type Subscription {
 
 type User {
   id: ID!
-  created: DateTime!
-  updated: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   username: String!
 }
 

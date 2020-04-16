@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {
   AuthSignupInput,
   validEmail,
   validPassword,
-  validUsername
+  validUsername,
 } from '@fullstack/data';
-import { AuthService } from '../../../core/services/auth.service';
+import { take } from 'rxjs/operators';
+import { DialogCheckMailboxComponent } from '../../../shared/components/dialog-check-mailbox/dialog-check-mailbox.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'pwa-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['../../auth.component.scss']
+  styleUrls: ['../../auth.component.scss'],
 })
 export class SignupComponent implements OnInit {
   formGroup: FormGroup;
@@ -23,60 +26,76 @@ export class SignupComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.hidePassword = true;
 
     this.formGroup = this.formBuilder.group(
       {
         username: [
           null,
-          [Validators.required, Validators.pattern(validUsername.regexp)]
+          [Validators.required, Validators.pattern(validUsername.regexp)],
         ],
         email: [
           null,
-          [Validators.required, Validators.pattern(validEmail.regexp)]
+          [Validators.required, Validators.pattern(validEmail.regexp)],
         ],
         password: [
           null,
-          [Validators.required, Validators.pattern(validPassword.regexp)]
+          [Validators.required, Validators.pattern(validPassword.regexp)],
         ],
-        confirmPassword: [null, [Validators.required]]
+        confirmPassword: [null, [Validators.required]],
       },
       {
         validators: [
           this.mustMatchValidator('password', 'confirmPassword'),
-          this.mustNotBeRejectedValidator()
-        ]
+          this.mustNotBeRejectedValidator(),
+        ],
       }
     );
   }
 
-  async submit(formValue: AuthSignupInput) {
-    try {
-      this.errorMessage = undefined;
-      this.hidePassword = true;
-      this.isLoading = true;
-      this.formGroup.disable();
-      await this.authService.signup(formValue);
-      this.router.navigate(['home']);
-    } catch (err) {
-      console.log('err: ', err);
-      this.errorMessage = err.error.message || err.message;
-    } finally {
-      this.isLoading = false;
-      this.formGroup.enable();
-    }
+  submit(formGroup: FormGroup): void {
+    const authSignupInput: AuthSignupInput = {
+      username: formGroup.getRawValue().username,
+      email: formGroup.getRawValue().email,
+      password: formGroup.getRawValue().password,
+    };
+    this.errorMessage = undefined;
+    this.hidePassword = true;
+    this.isLoading = true;
+    this.formGroup.disable();
+    this.authService
+      .signup(authSignupInput)
+      .pipe(take(1))
+      .subscribe(
+        async (res) => {
+          const dialog = this.dialog.open(DialogCheckMailboxComponent);
+          await dialog.afterClosed().pipe(take(1)).toPromise();
+          this.router.navigate(['/home']);
+        },
+        (err) => {
+          this.isLoading = false;
+          this.formGroup.enable();
+          this.errorMessage = err?.error?.message || err?.message || err;
+        }
+      );
+  }
+
+  onCloseDialog(): Promise<boolean> {
+    this.dialog.closeAll();
+    return this.router.navigate(['home']);
   }
 
   private mustMatchValidator(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
+      // Another validator has already found an error on the matchingControl
       if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-        // Another validator has already found an error on the matchingControl
         return;
       }
       // set error on matchingControl if validation fails

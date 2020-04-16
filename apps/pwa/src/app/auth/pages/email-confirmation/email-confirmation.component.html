@@ -1,0 +1,50 @@
+<section class="auth-page anime-zoom-in">
+  <mat-card class="auth-card" [ngClass]="{ 'anime-wobble': errorMessage }">
+    <mat-card-header>
+      <mat-card-title>Email confirmation</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <ng-container
+        *ngIf="emailToken; then confirmEmail; else emailNotConfirmed"
+      ></ng-container>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #confirmEmail>
+  <ng-container *ngIf="isLoading; then loading; else result"></ng-container>
+</ng-template>
+
+<ng-template #result>
+  <ng-container *ngIf="currentUser; else emailNotConfirmed">
+    <div class="status theme-primary-txt">
+      <mat-icon>done</mat-icon>
+    </div>
+    <p>Welcome ! {{ currentUser?.username }} Your are now a confirmed user !</p>
+    <mat-divider></mat-divider>
+    <div class="button-group">
+      <button mat-raised-button color="primary" routerLink="/home">
+        Continue
+      </button>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<ng-template #emailNotConfirmed>
+  <p class="m-10">
+    You have not confirmed your email address, to use some specific
+    functionalities you must first confirm that you are the owner of your email
+    address.
+    <br /><br />
+    If the link has expired you can request a new one.
+  </p>
+
+  <button mat-raised-button color="primary" (click)="onSendEmailConfirmation()">
+    Send email
+  </button>
+</ng-template>

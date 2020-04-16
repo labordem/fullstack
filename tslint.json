@@ -77,5 +77,8 @@
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true
+  },
+  "linterOptions": {
+    "exclude": ["libs/data/src/lib/generated.ts"]
   }
 }

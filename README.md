@@ -4,9 +4,11 @@ This project was generated using [Nx](https://nx.dev).
 
 <p><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="200"></p>
 
-| **DB** (Postgres)                                         | **API** (Nestjs)                                        | **PWA** (angular)                                        |
-| --------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------- |
+<!-- prettier-ignore-start -->
+| **DB** (Postgres) | **API** (Nestjs) | **PWA** (angular) |
+| --- | --- | --- |
 | <img src="documentation/images/postgres.png" width="150"> | <img src="documentation/images/nestjs.png" width="150"> | <img src="documentation/images/angular.png" width="150"> |
+<!-- prettier-ignore-end -->
 
 ## Objectives
 
@@ -28,11 +30,14 @@ This project was generated using [Nx](https://nx.dev).
 - [x] Dynamic color themes :
   - [x] Without DOM usage : Dark/light mode
   - [x] With DOM usage : Many color themes, can be defined on runtime (color picker, api response...)
-- [ ] User authentication system :
-  - [ ] sign up, sign in, jwt authentication
-  - [ ] email confirmation
-  - [ ] user can update his informations
-  - [ ] user can upload his profile avatar (image resized, progressive encoding)
+- [x] User authentication system :
+  - [x] sign up, sign in, jwt authentication
+  - [x] email confirmation
+- [ ] Error Handling
+- [ ] User can update his informations
+- [ ] User can upload his profile avatar (image resized, progressive encoding)
+- [ ] Internationalization en/fr
+- [ ] User search bar with pagination, filter, totalCount...
 
 ### Api functionalities
 
@@ -42,11 +47,15 @@ This project was generated using [Nx](https://nx.dev).
 - [x] Graphql <-> Typescript automations :
   - [x] GraphQL Schema generated from Api TypeORM classes
   - [x] Typescript interfaces (_generated.ts_ shared with frontend app) generated from GraphQL Schema
-- [ ] User authentication system :
-  - [ ] sign up, sign in, jwt authentication
-  - [ ] email confirmation
-  - [ ] user can update his informations
-  - [ ] user can upload his profile avatar (image resized, progressive encoding)
+- [x] User authentication system :
+  - [x] sign up, sign in, jwt authentication
+  - [x] email confirmation
+- [ ] Error Handling
+- [ ] Admin, authenticated user roles system
+- [ ] User can update his informations
+- [ ] User can upload his profile avatar (image resized, progressive encoding)
+- [ ] Automatic GraphQL CRUD resolvers according to ORM entities
+- [ ] Pagination, filter, totalCount in response...
 
 ## How to test the stack
 
