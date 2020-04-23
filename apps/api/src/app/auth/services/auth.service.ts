@@ -1,4 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { environment } from 'apps/api/src/environments/environment';
@@ -26,10 +30,10 @@ export class AuthService {
       email: data.email,
     });
     if (!userByEmail) {
-      throw new HttpException('email not found', HttpStatus.NOT_FOUND);
+      throw new UnauthorizedException('email not found');
     }
     if (!(await compare(data.password, userByEmail.password))) {
-      throw new HttpException('incorrect password', HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException('incorrect password');
     }
     const currentUserToken = this.jwtService.signCurrentUserToken(userByEmail);
     return currentUserToken;
@@ -40,16 +44,13 @@ export class AuthService {
       username: data.username,
     });
     if (userByUsername) {
-      throw new HttpException(
-        'username already exists',
-        HttpStatus.BAD_REQUEST
-      );
+      throw new BadRequestException('username already exists');
     }
     const userByEmail = await this.userRepository.findOne({
       email: data.email,
     });
     if (userByEmail) {
-      throw new HttpException('email already exists', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('email already exists');
     }
     const newUser = this.userRepository.create(data);
     const savedNewUser = await this.userRepository.save(newUser);
@@ -61,10 +62,10 @@ export class AuthService {
   async sendEmailConfirmation(userId: number): Promise<boolean> {
     const newUser = await this.userRepository.findOne({ id: userId });
     if (!newUser) {
-      throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('user not found');
     }
     if (newUser.isConfirmed) {
-      throw new HttpException('user already confirmed', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('user already confirmed');
     }
     const emailToken = this.jwtService.signEmailToken(newUser.email);
     const emailConfirmationLink = encodeURI(
@@ -113,7 +114,7 @@ export class AuthService {
       email: decodedEmail,
     });
     if (userByEmail.isConfirmed) {
-      throw new HttpException('user already confirmed', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('user already confirmed');
     }
     userByEmail.isConfirmed = true;
     const savedUser = await this.userRepository.save(userByEmail);

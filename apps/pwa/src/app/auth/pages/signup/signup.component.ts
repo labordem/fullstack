@@ -78,9 +78,11 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/home']);
         },
         (err) => {
+          this.errorMessage = err?.graphQLErrors[0]
+            ? err?.graphQLErrors[0]?.message?.message
+            : err?.networkError?.message;
           this.isLoading = false;
           this.formGroup.enable();
-          this.errorMessage = err?.error?.message || err?.message || err;
         }
       );
   }

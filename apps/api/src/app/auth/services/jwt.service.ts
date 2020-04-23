@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { environment } from 'apps/api/src/environments/environment';
 import { sign, verify } from 'jsonwebtoken';
@@ -13,7 +13,7 @@ export class JwtService {
       };
       return decoded.email;
     } catch (err) {
-      throw new HttpException(err.message, HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException(err.message);
     }
   }
 
@@ -21,7 +21,7 @@ export class JwtService {
     try {
       return verify(token, environment.JWT_USER_KEY) as User;
     } catch (err) {
-      throw new HttpException(err.message, HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException(err.message);
     }
   }
 
@@ -29,7 +29,7 @@ export class JwtService {
     try {
       return sign({ email }, environment.JWT_EMAIL_KEY, { expiresIn: '15m' });
     } catch (err) {
-      throw new HttpException('token creation failed', HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException('token creation failed');
     }
   }
 
@@ -40,7 +40,7 @@ export class JwtService {
         expiresIn: '7d',
       });
     } catch (err) {
-      throw new HttpException('token creation failed', HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException('token creation failed');
     }
   }
 }

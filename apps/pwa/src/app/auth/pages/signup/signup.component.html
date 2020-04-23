@@ -9,7 +9,13 @@
         <!-- Username input -->
         <mat-form-field appearance="outline">
           <mat-label>Enter your username</mat-label>
-          <input matInput formControlName="username" color="primary" required />
+          <input
+            matInput
+            formControlName="username"
+            color="primary"
+            required
+            autofocus
+          />
           <mat-error *ngIf="formGroup.get('username').hasError('required')">
             You must enter a value
           </mat-error>
@@ -126,7 +132,7 @@
 
         <!-- Error -->
         <mat-error *ngIf="errorMessage" class="submit-error">
-          {{ errorMessage }}
+          {{ errorMessage | json }}
         </mat-error>
       </form>
     </mat-card-content>

@@ -33,7 +33,6 @@ This project was generated using [Nx](https://nx.dev).
 - [x] User authentication system :
   - [x] sign up, sign in, jwt authentication
   - [x] email confirmation
-- [ ] Error Handling
 - [ ] User can update his informations
 - [ ] User can upload his profile avatar (image resized, progressive encoding)
 - [ ] Internationalization en/fr
@@ -50,7 +49,7 @@ This project was generated using [Nx](https://nx.dev).
 - [x] User authentication system :
   - [x] sign up, sign in, jwt authentication
   - [x] email confirmation
-- [ ] Error Handling
+- [x] Basic logs
 - [ ] Admin, authenticated user roles system
 - [ ] User can update his informations
 - [ ] User can upload his profile avatar (image resized, progressive encoding)

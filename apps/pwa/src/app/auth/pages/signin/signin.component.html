@@ -9,7 +9,7 @@
         <!-- Email input -->
         <mat-form-field appearance="outline">
           <mat-label>Enter your email</mat-label>
-          <input matInput formControlName="email" />
+          <input matInput formControlName="email" autofocus />
           <mat-error *ngIf="formGroup.get('email').hasError('required')">
             You must enter a value
           </mat-error>
@@ -79,7 +79,7 @@
         </div>
         <!-- Error -->
         <mat-error *ngIf="errorMessage" class="submit-error">
-          {{ errorMessage }}
+          {{ errorMessage | json }}
         </mat-error>
       </form>
     </mat-card-content>

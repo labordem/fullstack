@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthSigninInput, validEmail, validPassword } from '@fullstack/data';
+import { AuthSigninInput, validEmail } from '@fullstack/data';
 import { take } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 
@@ -54,20 +54,22 @@ export class SigninComponent implements OnInit {
       .subscribe(
         (res) => this.router.navigate(['home']),
         (err) => {
+          this.errorMessage = err?.graphQLErrors
+            ? err?.graphQLErrors[0]?.message?.message
+            : err?.networkError?.message;
           this.isLoading = false;
           this.formGroup.enable();
-          this.errorMessage = err?.error?.message || err?.message || err;
         }
       );
   }
 
   private mustNotBeRejectedValidator(): (formGroup: FormGroup) => void {
     return (formGroup: FormGroup) => {
-      if (this.errorMessage === validEmail.message) {
+      if (this.errorMessage === 'email not found') {
         formGroup.controls['email'].setErrors({ mustNotBeRejected: true });
         this.errorMessage = 'Please check your email';
       }
-      if (this.errorMessage === validPassword.message) {
+      if (this.errorMessage === 'incorrect password') {
         formGroup.controls['password'].setErrors({ mustNotBeRejected: true });
         this.errorMessage = 'Please check your password';
       }
