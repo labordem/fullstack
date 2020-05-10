@@ -2,3 +2,4 @@
 
 /dist
 /coverage
+/libs/data/src/lib/generated.ts

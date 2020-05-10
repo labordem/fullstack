@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { environment } from 'apps/pwa/src/environments/environment';
 
 @Pipe({
-  name: 'imageApi'
+  name: 'imageApi',
 })
 export class ImageApiPipe implements PipeTransform {
   /**
@@ -12,7 +12,10 @@ export class ImageApiPipe implements PipeTransform {
    * Usage example : <img src="{{ currentUser.avatar | imageApi }}"></img>
    */
   transform(imageUrlFromServer: string): string {
-    const imageUrlSuffix = `//${environment.API_DOMAIN}/${environment.API_PREFIX}:${environment.API_PORT}`;
-    return `${imageUrlSuffix}/${imageUrlFromServer}`;
+    if (imageUrlFromServer) {
+      return `//${environment.API_DOMAIN}:${environment.API_PORT}/${imageUrlFromServer}`;
+    } else {
+      return null;
+    }
   }
 }

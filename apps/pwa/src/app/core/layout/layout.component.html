@@ -5,7 +5,7 @@
         <ng-container *ngIf="currentUser$ | async as currentUser; else notAuth">
           <img
             class="img-user"
-            src="{{ currentUser?.avatar }}"
+            src="{{ currentUser?.avatar | imageApi }}"
             default="profile"
           />
           <h1>{{ currentUser?.username }}</h1>
