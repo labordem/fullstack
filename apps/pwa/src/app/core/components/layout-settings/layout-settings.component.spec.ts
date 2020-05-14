@@ -8,7 +8,7 @@ describe('LayoutSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutSettingsComponent]
+      declarations: [LayoutSettingsComponent],
     }).compileComponents();
   }));
 

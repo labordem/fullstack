@@ -8,7 +8,7 @@ describe('LayoutFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutFooterComponent]
+      declarations: [LayoutFooterComponent],
     }).compileComponents();
   }));
 

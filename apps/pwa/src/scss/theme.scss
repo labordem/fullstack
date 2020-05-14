@@ -30,8 +30,8 @@ $palette-primary: (
     A100: var(--palette-primary-contrast-A100),
     A200: var(--palette-primary-contrast-A200),
     A400: var(--palette-primary-contrast-A400),
-    A700: var(--palette-primary-contrast-A700)
-  )
+    A700: var(--palette-primary-contrast-A700),
+  ),
 );
 
 $palette-accent: (
@@ -63,8 +63,8 @@ $palette-accent: (
     A100: var(--palette-accent-contrast-A100),
     A200: var(--palette-accent-contrast-A200),
     A400: var(--palette-accent-contrast-A400),
-    A700: var(--palette-accent-contrast-A700)
-  )
+    A700: var(--palette-accent-contrast-A700),
+  ),
 );
 
 $palette-warn: (
@@ -96,8 +96,8 @@ $palette-warn: (
     A100: var(--palette-warn-contrast-A100),
     A200: var(--palette-warn-contrast-A200),
     A400: var(--palette-warn-contrast-A400),
-    A700: var(--palette-warn-contrast-A700)
-  )
+    A700: var(--palette-warn-contrast-A700),
+  ),
 );
 
 // $palette-background: (

@@ -11,13 +11,13 @@ import { CoreModule } from './core/core.module';
 export const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**', // must be the latest route
     loadChildren: () =>
-      import('./not-found/not-found.module').then(m => m.NotFoundModule)
-  }
+      import('./not-found/not-found.module').then((m) => m.NotFoundModule),
+  },
 ];
 
 export const routeNotFound: Routes = [];
@@ -28,13 +28,13 @@ export const routeNotFound: Routes = [];
     BrowserModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

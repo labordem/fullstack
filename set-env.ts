@@ -14,34 +14,34 @@ const dotenvDestinations: DotenvDestination[] = [
     path: 'apps/pwa/src/environments/environment.ts',
     prefixes: ['PUBLIC_DEV_', 'PUBLIC_ALL_'],
     json: {},
-    production: false
+    production: false,
   },
   {
     path: 'apps/pwa/src/environments/environment.prod.ts',
     prefixes: ['PUBLIC_PROD_', 'PUBLIC_ALL_'],
     json: {},
-    production: true
+    production: true,
   },
   {
     path: 'apps/api/src/environments/environment.ts',
     prefixes: ['PRIVATE_DEV_', 'PUBLIC_DEV_', 'PUBLIC_ALL_'],
     json: {},
-    production: false
+    production: false,
   },
   {
     path: 'apps/api/src/environments/environment.prod.ts',
     prefixes: ['PRIVATE_PROD_', 'PUBLIC_PROD_', 'PUBLIC_ALL_'],
     json: {},
-    production: true
-  }
+    production: true,
+  },
 ];
 
 const dotenv = Object.keys(process.env);
 
-dotenvDestinations.forEach(destination => {
+dotenvDestinations.forEach((destination) => {
   destination.json['production'] = destination.production;
-  dotenv.forEach(key => {
-    destination.prefixes.forEach(prefix => {
+  dotenv.forEach((key) => {
+    destination.prefixes.forEach((prefix) => {
       if (key.startsWith(prefix)) {
         setKeyValue(key, destination, prefix);
       }

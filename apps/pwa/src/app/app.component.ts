@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 
 @Component({
   selector: 'pwa-root',
-  template: ` <pwa-layout></pwa-layout> `,
+  template: `<pwa-layout></pwa-layout>`,
 })
 export class AppComponent implements OnInit {
   title = environment.APP_NAME;

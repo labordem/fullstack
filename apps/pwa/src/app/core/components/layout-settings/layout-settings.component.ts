@@ -5,7 +5,7 @@ import { Theme, ThemeService } from '../../services/theme.service';
 @Component({
   selector: 'pwa-layout-settings',
   templateUrl: './layout-settings.component.html',
-  styleUrls: ['./layout-settings.component.scss']
+  styleUrls: ['./layout-settings.component.scss'],
 })
 export class LayoutSettingsComponent implements OnInit {
   isDarkThemeToggled: boolean;

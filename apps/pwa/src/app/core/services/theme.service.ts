@@ -13,7 +13,7 @@ export interface Theme {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
   private themeSubject: BehaviorSubject<Theme>;
@@ -51,7 +51,7 @@ export class ThemeService {
         colorAccent: '#007acb',
         colorAccentContrast: 'white',
         colorWarn: '#F44336',
-        colorWarnContrast: 'white'
+        colorWarnContrast: 'white',
       },
       {
         name: 'javascript',
@@ -61,7 +61,7 @@ export class ThemeService {
         colorAccent: 'black',
         colorAccentContrast: 'white',
         colorWarn: '#F44336',
-        colorWarnContrast: 'white'
+        colorWarnContrast: 'white',
       },
       {
         name: 'typescript',
@@ -71,8 +71,8 @@ export class ThemeService {
         colorAccent: 'black',
         colorAccentContrast: 'white',
         colorWarn: '#F44336',
-        colorWarnContrast: 'white'
-      }
+        colorWarnContrast: 'white',
+      },
     ];
   }
 }

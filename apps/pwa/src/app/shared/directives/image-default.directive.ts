@@ -2,7 +2,7 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line
-  selector: 'img[default]'
+  selector: 'img[default]',
 })
 export class ImageDefaultDirective {
   /**

@@ -8,7 +8,7 @@ describe('LayoutProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutProfileComponent]
+      declarations: [LayoutProfileComponent],
     }).compileComponents();
   }));
 
