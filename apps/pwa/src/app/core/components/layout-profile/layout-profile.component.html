@@ -7,12 +7,12 @@
     <span>{{ currentUser?.username }}</span>
     <img
       class="img-user-button"
-      src="{{ currentUser?.avatar | imageApi }}"
+      [src]="currentUser?.avatar | imageApi"
       default="profile"
     />
   </button>
   <mat-menu #authMenu="matMenu">
-    <button mat-menu-item routerLink="profile/me">
+    <button mat-menu-item routerLink="user-edit">
       <mat-icon>edit</mat-icon>
       <span>Edit your profile</span>
     </button>

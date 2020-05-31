@@ -14,6 +14,11 @@ export const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'user-edit',
+    loadChildren: () =>
+      import('./user-edit/user-edit.module').then((m) => m.UserEditModule),
+  },
+  {
     path: '**', // must be the latest route
     loadChildren: () =>
       import('./not-found/not-found.module').then((m) => m.NotFoundModule),

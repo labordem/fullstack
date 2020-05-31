@@ -48,14 +48,16 @@ mat-sidenav {
   }
 }
 
-mat-toolbar {
+.toolbar {
+  align-content: center;
+  align-items: center;
+  display: flex;
   justify-content: space-between;
-  max-height: 50px;
-  min-height: 50px;
+  padding: 5px;
 
   .app-name {
-    font-size: 1.2em;
-    padding: 0 15px 0 10px;
+    font-size: 2em;
+    margin: 0 15px;
   }
 
   .fill-remaining-space {

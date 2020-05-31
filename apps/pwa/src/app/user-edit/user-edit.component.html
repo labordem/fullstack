@@ -1,0 +1,89 @@
+<section class="page anime-zoom-in" *ngIf="currentUser; else loading">
+  <form
+    enctype="multipart/form-data"
+    [formGroup]="formGroup"
+    (ngSubmit)="submit(formGroup)"
+  >
+    <button
+      mat-raised-button
+      matTooltip="Click or drag here your image to set your avatar"
+      matTooltipPosition="above"
+      class="upload-image-container"
+      (drop)="onImportImage($event)"
+      (dragover)="(false)"
+      (dragend)="(false)"
+      (click)="file.click()"
+    >
+      <input
+        #file
+        type="file"
+        accept="image/*"
+        (click)="file.value = null"
+        (change)="onImportImage($event)"
+      />
+      <img
+        [src]="currentUser.avatar | imageApi"
+        alt="your avatar"
+        default="profile"
+      />
+    </button>
+
+    <mat-card class="auth-card" [ngClass]="{ 'anime-wobble': errorMessage }">
+      <mat-card-header>
+        <mat-card-title>Your informations</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-divider></mat-divider>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Your username</mat-label>
+          <input matInput disabled [value]="currentUser?.username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Your email</mat-label>
+          <input matInput disabled [value]="currentUser?.email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Your description</mat-label>
+          <textarea matInput formControlName="description" autofocus></textarea>
+          <mat-hint
+            >{{ formGroup.get('description')?.value?.length }} / 190</mat-hint
+          >
+          <mat-error
+            *ngIf="formGroup.get('description').hasError()"
+          ></mat-error>
+        </mat-form-field>
+
+        <!-- Form validation -->
+        <mat-divider></mat-divider>
+        <div class="button-group">
+          <mat-progress-bar
+            *ngIf="isLoading"
+            mode="indeterminate"
+          ></mat-progress-bar>
+          <button
+            *ngIf="!isLoading"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!formGroup.valid"
+            class="btn-submit"
+          >
+            Submit
+          </button>
+        </div>
+
+        <mat-error *ngIf="errorMessage" class="submit-error">
+          {{ errorMessage | json }}
+        </mat-error>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

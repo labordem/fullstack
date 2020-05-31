@@ -5,7 +5,7 @@
         <ng-container *ngIf="currentUser$ | async as currentUser; else notAuth">
           <img
             class="img-user"
-            src="{{ currentUser?.avatar | imageApi }}"
+            [src]="currentUser?.avatar | imageApi"
             default="profile"
           />
           <h1>{{ currentUser?.username }}</h1>
@@ -31,7 +31,7 @@
       </button>
       <mat-divider></mat-divider>
       <ng-container *ngIf="currentUser$ | async">
-        <button routerLink="profile/me" (click)="sidenav.close()" mat-menu-item>
+        <button routerLink="user-edit" (click)="sidenav.close()" mat-menu-item>
           <mat-icon mat-list-icon>edit</mat-icon>
           <span>Edit your profile</span>
         </button>
@@ -48,33 +48,31 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <header>
-      <mat-toolbar color="primary" class="mat-elevation-z3">
-        <div class="hide-gt-sm">
-          <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-          </button>
-        </div>
-        <h1 class="app-name">{{ appName }}</h1>
-        <div *ngIf="destinations.length" class="hide-lt-md">
-          <button
-            *ngFor="let destination of destinations"
-            mat-button
-            routerLinkActive="list-item-active"
-            [routerLink]="destination.path"
-          >
-            <!-- <mat-icon mat-list-icon>{{ destination.icon }}</mat-icon> -->
-            <span>{{ destination.name }}</span>
-          </button>
-        </div>
-        <span class="fill-remaining-space hide-lt-md"></span>
-        <pwa-layout-profile
-          [currentUser]="currentUser$ | async"
-          class="hide-lt-md"
+    <header class="toolbar mat-elevation-z3 theme-primary">
+      <div class="hide-gt-sm">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <h1 class="app-name">{{ appName }}</h1>
+      <div *ngIf="destinations.length" class="hide-lt-md">
+        <button
+          *ngFor="let destination of destinations"
+          mat-button
+          routerLinkActive="list-item-active"
+          [routerLink]="destination.path"
         >
-        </pwa-layout-profile>
-        <pwa-layout-settings></pwa-layout-settings>
-      </mat-toolbar>
+          <!-- <mat-icon mat-list-icon>{{ destination.icon }}</mat-icon> -->
+          <span>{{ destination.name }}</span>
+        </button>
+      </div>
+      <span class="fill-remaining-space hide-lt-md"></span>
+      <pwa-layout-profile
+        [currentUser]="currentUser$ | async"
+        class="hide-lt-md"
+      >
+      </pwa-layout-profile>
+      <pwa-layout-settings></pwa-layout-settings>
     </header>
 
     <main>

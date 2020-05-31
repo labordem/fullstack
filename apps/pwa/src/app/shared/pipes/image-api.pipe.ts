@@ -13,9 +13,12 @@ export class ImageApiPipe implements PipeTransform {
    */
   transform(imageUrlFromServer: string): string {
     if (imageUrlFromServer) {
-      return `//${environment.API_DOMAIN}:${environment.API_PORT}/${imageUrlFromServer}`;
-    } else {
-      return null;
+      if (imageUrlFromServer.startsWith('data:image/jpeg;base64')) {
+        return imageUrlFromServer;
+      } else {
+        return `//${environment.API_DOMAIN}:${environment.API_PORT}/${imageUrlFromServer}`;
+      }
     }
+    return null;
   }
 }
