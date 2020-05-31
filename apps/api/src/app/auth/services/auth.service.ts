@@ -89,13 +89,11 @@ export class AuthService {
       subject: 'Confirm your account', // Subject line
       text: `
         Welcome ${newUser.username}!
-        Please go to
-        ${emailConfirmationLink}
-        to confirm your account.
+        Please go to ${emailConfirmationLink} to confirm your account.
       `, // plain text body
       html: `
         <h1>Welcome ${newUser.username} !</h1>
-        <p>Please go to <href>${emailConfirmationLink}</href> to confirm your account.</p>
+        <p>Please follow this <a href="${emailConfirmationLink}">link</a> to confirm your account.</p>
       `, // html body
     });
     console.log(`Message sent: ${info.messageId}`);

@@ -30,7 +30,7 @@ type Query {
   signin(authSigninInput: AuthSigninInput!): String!
   sendEmailConfirmation(currentUserId: Float!): String!
   user(id: Float!): User!
-  users(skip: Int!, take: Int!): [User!]!
+  users(skip: Int, take: Int): [User!]!
 }
 
 type Subscription {

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../core/guards/auth.guard';
 import { SharedModule } from '../shared/shared.module';
 import { EmailConfirmationComponent } from './pages/email-confirmation/email-confirmation.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -13,7 +12,6 @@ const routes: Routes = [
   {
     path: 'email-confirmation/:emailToken',
     component: EmailConfirmationComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'email-confirmation',
